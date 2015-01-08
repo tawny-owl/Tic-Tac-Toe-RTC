@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>wadup world</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="http://icecomm.cloudapp.net/icecomm-0.0.3.js"></script>
+  <!-- <script type="text/javascript" src="http://localhost:8000/icecomm-0.0.3.js"></script> -->
+</head>
+<style>
+  button
+  {
+    display: inline-block;
+  }
+</style>
+<body>
+  <div class="row1">
+    <button data-value="1"></button>
+    <button data-value="2"></button>
+    <button data-value="3"></button>
+  </div>
+  <div class="row2">
+    <button data-value="4"></button>
+    <button data-value="5"></button>
+    <button data-value="6"></button>
+  </div>
+  <div class="row3">
+    <button data-value="7"></button>
+    <button data-value="8"></button>
+    <button data-value="9"></button>
+  </div>
+</body>
+  <script>
+    var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
+    var mediaOptions = {
+      stream: false
+    }
+    var mySign;
+    var theirSign;
+    var obj = {};
+    var isMyTurn = false;
+    var board = [];
+
+    comm.connect('room', mediaOptions);
+
+    comm.on('data', function(options) {
+      if (options.data.started || obj.started) {
+        $('button[data-value="' + options.data + '"]').text(theirSign);
+        isMyTurn = true;
+      }
+      if (!options.data.started && !obj.started) {
+        obj.started = true;
+        mySign = options.data.theirSign;
+        theirSign = mySign === 'X' ? 'O' : 'X';
+        if (mySign === 'X') {
+          isMyTurn = true;
+        }
+      }
+    });
+
+    comm.on('connected', function(options) {
+      if (options.host) {
+        mySign = confirm("A player joined. Would you like to start as X?") ? 'X' : 'O';
+        theirSign = mySign === 'X' ? 'O' : 'X';
+        obj.theirSign = theirSign;
+        comm.send(obj)
+        obj.started = true;
+        if (mySign === 'X') {
+          isMyTurn = true;
+        }
+      }
+    });
+
+    $('button').click(function(event) {
+      if (!$(this).text() && isMyTurn) {
+        $(this).text(mySign);
+        comm.send($(this).data('value'));
+        isMyTurn = false;
+      }
+    });
+  </script>
+</html>
