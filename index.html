@@ -55,6 +55,7 @@
     });
 
     comm.on('connected', function(options) {
+      $('.status').html('Ready to play');
       if (comm.isHost()) {
         mySign = confirm("A player joined. Would you like to start as X?") ? 'X' : 'O';
         assignSigns(mySign);
@@ -66,7 +67,7 @@
       }
     });
 
-    $('.status').html('Waiting for other player');
+    $('.status').html('Waiting for other player...');
 
     $('button').click(function(event) {
       if (!$(this).text() && isMyTurn) {
