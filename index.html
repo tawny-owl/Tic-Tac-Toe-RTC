@@ -11,7 +11,8 @@
 
 </style>
 <body>
-  <div>
+  <div class="header">Tic Tac Toe</div>
+  <div class="board">
     <div class="row1">
       <button data-value="0"></button>
       <button data-value="1"></button>
@@ -57,8 +58,8 @@
     });
 
     comm.on('connected', function(options) {
-      $('.status').html('Ready to play');
       if (comm.isHost()) {
+        $('.status').html('Ready to play');
         mySign = confirm("A player joined. Would you like to start as X?") ? 'X' : 'O';
         assignSigns(mySign);
         var obj = {
