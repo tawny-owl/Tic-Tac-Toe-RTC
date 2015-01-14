@@ -59,7 +59,6 @@
 
     comm.on('connected', function(options) {
       if (comm.isHost()) {
-        $('.status').html('Ready to play');
         mySign = confirm("A player joined. Would you like to start as X?") ? 'X' : 'O';
         assignSigns(mySign);
         var obj = {
@@ -91,6 +90,7 @@
       theirSign = me === 'X' ? 'O' : 'X';
       isMyTurn = mySign === 'X';
       started = true;
+      $('.status').html('Ready to play');
     }
 
     function hasWon() {
