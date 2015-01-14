@@ -11,21 +11,25 @@
 
 </style>
 <body>
-  <div class="row1">
-    <button data-value="0"></button>
-    <button data-value="1"></button>
-    <button data-value="2"></button>
+  <div class="header">Tic Tac Toe</div>
+  <div class="board">
+    <div class="row1">
+      <button data-value="0"></button>
+      <button data-value="1"></button>
+      <button data-value="2"></button>
+    </div>
+    <div class="row2">
+      <button data-value="3"></button>
+      <button data-value="4"></button>
+      <button data-value="5"></button>
+    </div>
+    <div class="row3">
+      <button data-value="6"></button>
+      <button data-value="7"></button>
+      <button data-value="8"></button>
+    </div>
   </div>
-  <div class="row2">
-    <button data-value="3"></button>
-    <button data-value="4"></button>
-    <button data-value="5"></button>
-  </div>
-  <div class="row3">
-    <button data-value="6"></button>
-    <button data-value="7"></button>
-    <button data-value="8"></button>
-  </div>
+  <div class="status"></div>
 </body>
   <script>
     var comm = new IceComm('$2a$10$KqS6dKC1ic90tZ6Y4yepQ.soiOkH7Az7rS9umXSLckahsrzfDDK5e');
@@ -65,6 +69,8 @@
       }
     });
 
+    $('.status').html('Waiting for other player...');
+
     $('button').click(function(event) {
       if (!$(this).text() && isMyTurn) {
         $(this).text(mySign);
@@ -84,6 +90,7 @@
       theirSign = me === 'X' ? 'O' : 'X';
       isMyTurn = mySign === 'X';
       started = true;
+      $('.status').html('Ready to play');
     }
 
     function hasWon() {

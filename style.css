@@ -1,7 +1,52 @@
-button
-  {
-    height: 100px;
-    width: 100px;
-    font-size: 48px;
-    display: inline-block;
-  }
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+
+.board {
+  position: relative;
+  width: 330px;
+  height: 330px;
+}
+
+.header {
+  width: 300px;
+  padding: 20px 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  color: #333;
+  text-align: left;
+  color: #776E65;
+  font-weight: 800;
+}
+
+button {
+  height: 100px;
+  width: 100px;
+  font-size: 48px;
+  display: block;
+  float: left;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  font-family: 'Open Sans', sans-serif;
+  background: #EEE4DA;
+  color: #776E65;
+}
+
+button:focus {outline:0;}
+
+.row1, .row2, .row3 {
+  position: absolute;
+}
+
+.row2 {
+  top: 33%;
+}
+
+.row3 {
+  top: 66%;
+}
+
+.status {
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
