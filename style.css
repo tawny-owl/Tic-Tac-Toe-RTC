@@ -1,4 +1,19 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+@font-face {
+  font-family: 'BrandonGrotesque';
+  src: url("./Brandon_bld.otf");
+  font-weight: regular;
+  font-style: normal; }
+
+body {
+  width: 100%;
+  height: auto;
+  bottom: 0px;
+  top: 0px;
+  left: 0;
+  position: absolute;
+  margin: 0px;
+}
 
 .board {
   position: relative;
@@ -10,25 +25,28 @@
   width: 300px;
   padding: 20px 10px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 30px;
+  font-size: 40px;
   color: #333;
-  text-align: left;
+  text-align: center;
   color: #776E65;
   font-weight: 800;
+  font-family: BrandonGrotesque-Bold;
+  color: #EECAFC;
+  /*line-height: 101px;*/
 }
 
 button {
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   font-size: 48px;
   display: block;
   float: left;
   border: none;
   border-radius: 4px;
-  margin: 5px;
+  margin: 8px;
   font-family: 'Open Sans', sans-serif;
-  background: #EEE4DA;
-  color: #776E65;
+  background: #50E3C2;
+  color: #FFF;
 }
 
 button:focus {outline:0;}
@@ -45,8 +63,26 @@ button:focus {outline:0;}
   top: 66%;
 }
 
+.panel {
+  margin: 0 auto;
+  width: 30%
+}
+
 .status {
   padding: 20px;
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
+}
+
+.box {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  
+}
+
+.colorful {
+  background: -webkit-radial-gradient(0% 100%, rgba(118, 72, 160, 0.701961) 0px, rgba(118, 72, 160, 0) 60%), -webkit-radial-gradient(90% 100%, rgb(82, 63, 140) 0px, rgba(82, 63, 140, 0) 40%), -webkit-radial-gradient(50% 0%, rgba(84, 90, 182, 0.6) 0px, rgba(84, 90, 182, 0) 75%), -webkit-radial-gradient(100% 0%, rgb(121, 74, 162) 0px, rgba(121, 74, 162, 0) 57%);
+  background-color: #3b2f63; 
 }
